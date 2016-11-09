@@ -23,6 +23,13 @@ function preload() {
 	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 }
 
+var player;
+var platforms;
+var cursors;
+var stars;
+var score = 0;
+var scoreText;
+
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -61,6 +68,8 @@ function create() {
 		star.body.gravity.y = 6;
 		star.body.bounce.y = 0.7 + Math.random() * 0.2;
 	}
+
+	scoreText = game.add.text(16, 16, 'score:0', { fontSize: '32px', fill: '#000'});
 }
 
 function update() {
@@ -88,6 +97,9 @@ function update() {
 
 function collectStar(player, star) {
 	star.kill();
+
+	score += 10;
+	scoreText = 'Score: ' + score;
 }
 
 </script>
